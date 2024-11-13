@@ -1,0 +1,133 @@
+# Project information
+site_name: Zabbix Book
+site_url: https://trikke76.github.io/Zabbix-Book
+site_author: The Monitoring Penmasters
+site_description: An open-source Zabbix book
+copyright: to do
+
+# Repository
+repo_name: penmasters
+repo_url: https://github.com/penmasters/zabbix-book
+edit_uri: edit/master/docs
+docs_dir: docs
+
+# Navigation
+nav:
+  - Welcome: "index.md"
+  - Translation and Guidlines: "Guidlines-for-translations.md"
+
+theme:
+  language: en
+  name: material
+  custom_dir: docs/overrides
+  font:
+    text: Roboto
+    code: Nunito
+  icon:
+    logo: material/library
+  features:
+    - header.autohide
+    - navigation.sections
+    #     - navigation.instant can't be used with i18n
+    - navigation.expand
+  palette:
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: light blue
+      accent: light blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+extra_css:
+  - stylesheets/extra.css
+
+# Plugins
+plugins:
+  - search
+  - i18n:
+      reconfigure_material: true
+      fallback_to_default: true
+      docs_structure: suffix
+      languages:
+        - locale: fr
+          name: Français
+          build: true
+        - locale: de
+          name: German
+          build: true
+        - locale: it
+          name: Italian
+          build: true
+        - locale: nl
+          name: Nederlands
+          build: true
+        - locale: pt
+          name: Portuguese
+          build: true
+        - locale: es
+          name: Spanish
+          build: true
+        - locale: th
+          name: ภาษาไทย
+          build: true
+        - locale: zh
+          name: 中国人
+          build: true
+        - locale: en
+          default: true
+          name: English
+          build: true
+
+  - print-site:
+      add_to_navigation: false
+      print_page_title: "Print Book"
+      # Table of contents
+      add_table_of_contents: true
+      toc_title: "Table of Contents"
+      toc_depth: 6
+      # Content-related
+      add_full_urls: false
+      enumerate_headings: true
+      enumerate_figures: true
+      add_cover_page: true
+      cover_page_template: "docs/assets/templates/custom_cover_page.tpl"
+      path_to_pdf: ""
+      include_css: true
+      enabled: true
+      exclude:
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - footnotes
+  - def_list
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.blocks.admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.caret
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.progressbar
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
