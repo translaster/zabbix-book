@@ -1,1 +1,3 @@
 # Guidlines
+
+## How to contribute
