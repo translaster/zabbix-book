@@ -13,8 +13,64 @@ docs_dir: docs
 
 # Navigation
 nav:
-  - Welcome: "index.md"
-  - Guidlines: "Guidlines.md"
+  - "Welcome": "index.md"
+  - "Guidlines": "Guidlines.md"
+  - "Getting started":
+      - getting-started/initial-steps.md
+      - getting-started/Requirements.md
+  - "Installation and Configuration":
+      - installation/installing-zabbixdb.md
+      - installation/installing-zabbix.md
+      - installation/installing-zabbix-ha.md
+  - "Understanding the Essentials":
+      - understanding-essentials/core-concepts.md
+      - understanding-essentials/navigating-zabbix-interface.md
+      - understanding-essentials/usermanagement.md
+  - "Host and Network Configuration":
+      - host-network-config/defining-zabbix-hosts.md
+      - host-network-config/organazing-with-hostgroups.md
+      - host-network-config/interfaces-templates.md
+      - host-network-config/items-data-collection.md
+  - "Problem Detection and Alerts":
+      - problem-detection-alerts/zabbix-triggers.md
+      - problem-detection-alerts/using-macros.md
+      - problem-detection-alerts/how-information-travels.md
+      - problem-detection-alerts/automating-actions.md
+  - "Permission Management":
+      - permission-management/user-groups.md
+  - "Data Visualization":
+      - data-visualization/visualising-problems.md
+  - "Advanced Monitoring Techniques":
+      - advanced-monitoring/automating-configuration.md
+      - advanced-monitoring/vmware-monitoring.md
+      - advanced-monitoring/website-monitoring.md
+  - "Discovery":
+      - discovery/network-discovery.md
+      - discovery/active-agent-registration.md
+      - discovery/low-level-discovery.md
+  - "Specialized Monitoring":
+      - specialized-monitoring/SNMP-monitoring.md
+      - specialized-monitoring/SNMP-traps-monitoring.md
+      - specialized-monitoring/JAVA-monitoring.md
+      - specialized-monitoring/IPMI-monitoring.md
+  - "Authentication and Security":
+      - authentication/HTTP-authentication.md
+      - authentication/LDAP-authentication.md
+      - authentication/SAML-authentication.md
+      - authentication/MFA-support.md
+  - "Working with Proxies":
+      - proxies/installing-proxies.md
+      - proxies/active-proxies.md
+      - proxies/passive-proxies.md
+      - proxies/loadbalancing-proxies.md
+  - "Security Best Practices":
+      - security/securing-the-frontend.md
+      - security/using-selinux.md
+  - "Maintenance and Monitoring Windows":
+      - maintenance-windows/windows-monitoring.md
+      - maintenance-windows/maintaining-zabbix.md
+  - "Zabbix API":
+      - api/using-zabbix-api.md
 
 theme:
   language: en
