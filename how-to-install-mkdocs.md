@@ -44,6 +44,10 @@ pip3 install mkdocs-print-site-plugin
 ```
 pip3 install mkdocs-static-i18n
 ```
+## Install the spellcheck 
+
+pip3 install 'mkdocs-spellcheck[all]'
+
 
 ## Build your site local and test it
 
