@@ -18,7 +18,7 @@ nav:
   - "Getting started":
       - getting-started/initial-steps.md
       - getting-started/Requirements.md
-  - "Installation and Configuration":
+  - "Chapter 1: Zabbix Components, basic functions and installation":
       - installation/installing-zabbixdb.md
       - installation/installing-zabbix.md
       - installation/installing-zabbix-ha.md
