@@ -31,20 +31,16 @@ nav:
       - zabbix-triggers/eng-index.md
   - "Chapter 6":
       - zabbix-templates/eng-index.md
-  #  - "Chapter 7: Sending out alerts with Zabbix":
-  #      - zabbix-components/basic-installation.md
-  #  - "Chapter 8: Integrating with exteral services":
-  #      - zabbix-components/basic-installation.md
-  #  - "Chapter 9: Using Low level discovery to automate":
-  #      - zabbix-components/basic-installation.md
-  #  - "Chapter 10: Leveraging custom items for extending the Zabbix environment":
-  #      - zabbix-components/basic-installation.md
-  #  - "Chapter 11: Autodiscovery and active agent autoregistration":
-  #      - zabbix-components/basic-installation.md
-  #  - "Chapter 12: Graphs, Dashboards, Reports, Maps and other visualisation":
-  #      - zabbix-components/basic-installation.md
-  #  - "Chapter 13: Using the Zabbix API":
-  #      - zabbix-components/basic-installation.md
+  - "Chapter 7": 
+      - zabbix-alerts/eng-index.md
+  - "Chapter 8":
+      - zabbix-lld/eng-index.md
+  - "Chapter 9": 
+      - zabbix-extending/eng-index.md
+  - "Chapter 10": 
+      - zabbix-discovery/eng-index.md
+  - "Chapter 11: Graphs, Dashboards, Reports, Maps and other visualisation":
+      - zabbix-visualisation/eng-index.md
 
 theme:
   language: en
