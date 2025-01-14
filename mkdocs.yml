@@ -27,10 +27,10 @@ nav:
       - zabbix-installation/eng-index.md
   - "Chapter 4":
       - zabbix-collecting-data/eng-index.md
-  #  - "Chapter 5: Setting up triggers":
-  #      - zabbix-components/basic-installation.md
-  #  - "Chapter 6: Building and using templates":
-  #      - zabbix-components/basic-installation.md
+  - "Chapter 5":
+      - zabbix-triggers/eng-index.md
+  - "Chapter 6":
+      - zabbix-templates/eng-index.md
   #  - "Chapter 7: Sending out alerts with Zabbix":
   #      - zabbix-components/basic-installation.md
   #  - "Chapter 8: Integrating with exteral services":
