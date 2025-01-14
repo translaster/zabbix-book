@@ -18,59 +18,33 @@ nav:
   - "Getting started":
       - getting-started/initial-steps.md
       - getting-started/Requirements.md
-  - "Chapter 1: Zabbix Components, basic functions and installation":
-      - installation/installing-zabbixdb.md
-      - installation/installing-zabbix.md
-      - installation/installing-zabbix-ha.md
-  - "Understanding the Essentials":
-      - understanding-essentials/core-concepts.md
-      - understanding-essentials/navigating-zabbix-interface.md
-      - understanding-essentials/usermanagement.md
-  - "Host and Network Configuration":
-      - host-network-config/defining-zabbix-hosts.md
-      - host-network-config/organazing-with-hostgroups.md
-      - host-network-config/interfaces-templates.md
-      - host-network-config/items-data-collection.md
-  - "Problem Detection and Alerts":
-      - problem-detection-alerts/zabbix-triggers.md
-      - problem-detection-alerts/using-macros.md
-      - problem-detection-alerts/how-information-travels.md
-      - problem-detection-alerts/automating-actions.md
-  - "Permission Management":
-      - permission-management/user-groups.md
-  - "Data Visualization":
-      - data-visualization/visualising-problems.md
-  - "Advanced Monitoring Techniques":
-      - advanced-monitoring/automating-configuration.md
-      - advanced-monitoring/vmware-monitoring.md
-      - advanced-monitoring/website-monitoring.md
-  - "Discovery":
-      - discovery/network-discovery.md
-      - discovery/active-agent-registration.md
-      - discovery/low-level-discovery.md
-  - "Specialized Monitoring":
-      - specialized-monitoring/SNMP-monitoring.md
-      - specialized-monitoring/SNMP-traps-monitoring.md
-      - specialized-monitoring/JAVA-monitoring.md
-      - specialized-monitoring/IPMI-monitoring.md
-  - "Authentication and Security":
-      - authentication/HTTP-authentication.md
-      - authentication/LDAP-authentication.md
-      - authentication/SAML-authentication.md
-      - authentication/MFA-support.md
-  - "Working with Proxies":
-      - proxies/installing-proxies.md
-      - proxies/active-proxies.md
-      - proxies/passive-proxies.md
-      - proxies/loadbalancing-proxies.md
-  - "Security Best Practices":
-      - security/securing-the-frontend.md
-      - security/using-selinux.md
-  - "Maintenance and Monitoring Windows":
-      - maintenance-windows/windows-monitoring.md
-      - maintenance-windows/maintaining-zabbix.md
-  - "Zabbix API":
-      - api/using-zabbix-api.md
+  - "Chapter 1":
+      - zabbix-components/eng-index.md
+      - zabbix-components/eng-basic-installation.md
+  - "Chapter 2":
+      - zabbix-proxies/eng-index.md
+  - "Chapter 3":
+      - zabbix-installation/eng-index.md
+  - "Chapter 4":
+      - zabbix-collecting-data/eng-index.md
+  #  - "Chapter 5: Setting up triggers":
+  #      - zabbix-components/basic-installation.md
+  #  - "Chapter 6: Building and using templates":
+  #      - zabbix-components/basic-installation.md
+  #  - "Chapter 7: Sending out alerts with Zabbix":
+  #      - zabbix-components/basic-installation.md
+  #  - "Chapter 8: Integrating with exteral services":
+  #      - zabbix-components/basic-installation.md
+  #  - "Chapter 9: Using Low level discovery to automate":
+  #      - zabbix-components/basic-installation.md
+  #  - "Chapter 10: Leveraging custom items for extending the Zabbix environment":
+  #      - zabbix-components/basic-installation.md
+  #  - "Chapter 11: Autodiscovery and active agent autoregistration":
+  #      - zabbix-components/basic-installation.md
+  #  - "Chapter 12: Graphs, Dashboards, Reports, Maps and other visualisation":
+  #      - zabbix-components/basic-installation.md
+  #  - "Chapter 13: Using the Zabbix API":
+  #      - zabbix-components/basic-installation.md
 
 theme:
   language: en
