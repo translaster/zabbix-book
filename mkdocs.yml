@@ -19,28 +19,31 @@ nav:
       - getting-started/initial-steps.md
       - getting-started/Requirements.md
   - "Chapter 1":
-      - zabbix-components/eng-index.md
-      - zabbix-components/eng-basic-installation.md
+      - zabbix-components/index.md
+      - zabbix-components/eng/basic-installation.md
   - "Chapter 2":
-      - zabbix-proxies/eng-index.md
+      - zabbix-proxies/index.md
+      - zabbix-proxies/eng/passive-proxies.md
+      - zabbix-proxies/eng/active-proxies.md
+      - zabbix-proxies/eng/web-services.md
   - "Chapter 3":
-      - zabbix-installation/eng-index.md
+      - zabbix-installation/index.md
   - "Chapter 4":
-      - zabbix-collecting-data/eng-index.md
+      - zabbix-collecting-data/index.md
   - "Chapter 5":
-      - zabbix-triggers/eng-index.md
+      - zabbix-triggers/index.md
   - "Chapter 6":
-      - zabbix-templates/eng-index.md
+      - zabbix-templates/index.md
   - "Chapter 7": 
-      - zabbix-alerts/eng-index.md
+      - zabbix-alerts/index.md
   - "Chapter 8":
-      - zabbix-lld/eng-index.md
+      - zabbix-lld/index.md
   - "Chapter 9": 
-      - zabbix-extending/eng-index.md
+      - zabbix-extending/index.md
   - "Chapter 10": 
-      - zabbix-discovery/eng-index.md
-  - "Chapter 11: Graphs, Dashboards, Reports, Maps and other visualisation":
-      - zabbix-visualisation/eng-index.md
+      - zabbix-discovery/index.md
+  - "Chapter 11":
+      - zabbix-visualisation/index.md
 
 theme:
   language: en
@@ -52,9 +55,9 @@ theme:
   icon:
     logo: material/library
   features:
-    - header.autohide
-    - navigation.sections
-    #     - navigation.instant can't be used with i18n
+    #- header.autohide
+    #- navigation.sections
+    #- navigation.instant can't be used with i18n
     - navigation.expand
   palette:
     - scheme: default
@@ -76,6 +79,7 @@ extra_css:
 # Plugins
 plugins:
   - search
+  - offline
   - spellcheck:
       backends:  # the backends you want to use
       - symspellpy  # as strings
@@ -105,10 +109,11 @@ plugins:
 
       # whether to only check in strict mode
       strict_only: no
+
   - i18n:
       reconfigure_material: true
       fallback_to_default: true
-      docs_structure: suffix
+      docs_structure: folder
       languages:
         - locale: fr
           name: Français
