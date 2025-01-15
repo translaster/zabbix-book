@@ -11,14 +11,14 @@ helping you spot trends and anomalies with ease. Next, we'll move on to **dashbo
 where you can aggregate multiple widgets into a single view for a more holistic
 understanding of your network's health.
 
-Then, we'll discuss **reports**—an essential feature for summarizing and sharing
+Then, we'll discuss **reports** an essential feature for summarizing and sharing
 insights with your team or stakeholders.
 Finally, we'll cover **maps**, a unique visualization tool that lets you create
 interactive representations of your network topology, making it easier to
 pinpoint issues and understand relationships between different components.
 
 By the end of this chapter, you'll have a comprehensive understanding of how to
-leverage Zabbix's visualization tools to monitor, analyze, and communicate the
+leverage Zabbix's visualization tools to monitor, analyse, and communicate the
 state of your IT environment effectively. 
 Whether you're a seasoned administrator or just starting with Zabbix, mastering
 these visual tools will enhance your ability to manage complex infrastructures

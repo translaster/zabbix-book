@@ -4,17 +4,17 @@ In this chapter, we expand on the foundational knowledge from the "Getting Start
 section to provide a comprehensive guide for both beginners who are installing
 Zabbix for the first time and advanced users who seek to optimize their setup.
 We’ll not only cover the essential steps for a basic installation but also delve
-into the finer details of Zabbix's architecture, components, and best practices.
+into the finer details of Zabbix architecture, components, and best practices.
 
 We’ll start by walking through the installation process, ensuring you have a solid
 foundation to build on. From there, we'll move into the core components of
-Zabbix—what each one does, how they interact, and why they are crucial to your
+Zabbix, what each one does, how they interact, and why they are crucial to your
 monitoring solution.
-You'll learn about subprocesses, their roles, and how they contribute to Zabbix’s
+You'll learn about subprocesses, their roles, and how they contribute to Zabbix
 efficiency and reliability.
 
 Additionally, we’ll explore good architectural choices that can make or break
-your monitoring setup. Whether you’re managing a small network or a large-scale
+your monitoring setup. Whether you're managing a small network or a large-scale
 infrastructure, making the right design decisions early on will pay dividends
 in scalability, performance, and maintenance.
 
