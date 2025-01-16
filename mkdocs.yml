@@ -19,31 +19,31 @@ nav:
       - getting-started/initial-steps.md
       - getting-started/Requirements.md
   - "Chapter 1":
-      - zabbix-components/index.md
-      - zabbix-components/eng/basic-installation.md
+      - zabbix-components/chapter.md
+      - zabbix-components/basic-installation.md
   - "Chapter 2":
-      - zabbix-proxies/index.md
-      - zabbix-proxies/eng/passive-proxies.md
-      - zabbix-proxies/eng/active-proxies.md
-      - zabbix-proxies/eng/web-services.md
+      - zabbix-proxies/chapter.md
+      - zabbix-proxies/passive-proxies.md
+      - zabbix-proxies/active-proxies.md
+      - zabbix-proxies/web-services.md
   - "Chapter 3":
-      - zabbix-installation/index.md
+      - zabbix-installation/chapter.md
   - "Chapter 4":
-      - zabbix-collecting-data/index.md
+      - zabbix-collecting-data/chapter.md
   - "Chapter 5":
-      - zabbix-triggers/index.md
+      - zabbix-triggers/chapter.md
   - "Chapter 6":
-      - zabbix-templates/index.md
+      - zabbix-templates/chapter.md
   - "Chapter 7": 
-      - zabbix-alerts/index.md
+      - zabbix-alerts/chapter.md
   - "Chapter 8":
-      - zabbix-lld/index.md
+      - zabbix-lld/chapter.md
   - "Chapter 9": 
-      - zabbix-extending/index.md
+      - zabbix-extending/chapter.md
   - "Chapter 10": 
-      - zabbix-discovery/index.md
+      - zabbix-discovery/chapter.md
   - "Chapter 11":
-      - zabbix-visualisation/index.md
+      - zabbix-visualisation/chapter.md
 
 theme:
   language: en
