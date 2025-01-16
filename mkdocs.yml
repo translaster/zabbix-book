@@ -3,7 +3,7 @@ site_name: Zabbix Book
 site_url: https://penmasters.github.io/zabbix-book/
 site_author: The Monitoring Penmasters
 site_description: An open-source Zabbix book
-copyright: to do
+copyright: Copyright &copy; 2025 Stichting The Monitoring Penmasters
 
 # Repository
 repo_name: penmasters
@@ -62,6 +62,11 @@ theme:
     - navigation.sections
     - navigation.indexes
     - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.action.view
   palette:
     - scheme: default
       primary: blue
@@ -81,7 +86,19 @@ extra_css:
 
 # Plugins
 plugins:
-  - search
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+      lang:
+        - fr
+        - de
+        - it
+        - nl
+        - pt  
+        - es
+        - th
+        - zh 
+        - en
+
   - privacy #GDPR compliance
   - spellcheck:
       backends:  # the backends you want to use
