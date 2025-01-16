@@ -17,45 +17,29 @@ brew install pango
 
 ## Install pip
 
-```zsh
-pip3 install --upgrade pip
+```
+pip install --upgrade pip
 ```
 
-## Install MkDocs
-
-```zsh
-pip3 install mkdocs
+## Install MkDocs and extensions
 ```
-
-## Install MkDocs extension material
-
-```zsh
-pip3 install mkdocs-material
+pip install mkdocs
+pip install mkdocs-material
+pip install mkdocs-print-site-plugin
+pip install mkdocs-static-i18n
+pip install 'mkdocs-spellcheck[all]'
 ```
-
-## Install MkDocs extension with-pdf
+## Install extra pip packages
 
 ```
-pip3 install mkdocs-print-site-plugin
+pip install idna
 ```
-
-## Install MkDocs support for multi language
-
 ```
-pip3 install mkdocs-static-i18n
 ```
-## Install the spellcheck 
-
-pip3 install 'mkdocs-spellcheck[all]'
-
-
 ## Build your site local and test it
 
 ```
 python3 -m mkdocs serve
-```
-
-```
 python3 -m mkdocs build
 ```
 

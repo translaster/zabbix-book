@@ -18,7 +18,7 @@ nav:
   - "Getting started":
       - getting-started/initial-steps.md
       - getting-started/Requirements.md
-  - "Chapter 1":
+  - "Chapter 1 ":
       - zabbix-components/chapter.md
       - zabbix-components/basic-installation.md
   - "Chapter 2":
@@ -55,10 +55,13 @@ theme:
   icon:
     logo: material/library
   features:
-    #- header.autohide
-    #- navigation.sections
-    #- navigation.instant can't be used with i18n
+#    - navigation.tabs
     - navigation.expand
+    - navigation.prune
+    - navigation.path
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
   palette:
     - scheme: default
       primary: blue
@@ -79,7 +82,7 @@ extra_css:
 # Plugins
 plugins:
   - search
-  - offline
+  - privacy #GDPR compliance
   - spellcheck:
       backends:  # the backends you want to use
       - symspellpy  # as strings
@@ -153,7 +156,7 @@ plugins:
       toc_depth: 6
       # Content-related
       add_full_urls: false
-      enumerate_headings: true
+      enumerate_headings: false
       enumerate_figures: true
       add_cover_page: true
       cover_page_template: "docs/assets/templates/custom_cover_page.tpl"
