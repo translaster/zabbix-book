@@ -12,7 +12,7 @@ Contributors should be aware that:
 **Penmasters Foundation**.  
 - The foundation reserves the right to use the material for commercial purposes,
 including the publication of a physical book.  
-- Before contributing, all contributors must sign a non-disclosure agreement (NDA)
+- Before contributing, all contributors must sign a agreement
 to ensure proper handling of the content and rights.  
 - Profits will be used by the foundation to cover working expenses and to sponsor
 other to be defined opensource projects.
