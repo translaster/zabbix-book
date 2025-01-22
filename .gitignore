@@ -7,3 +7,4 @@ libcairo.2.dylib
 .markdownlint.json
 mkdocs_spellcheck/
 mkdocs_spellcheck-1.1.0.dist-info/
+.cache/
