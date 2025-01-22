@@ -14,6 +14,8 @@ Contributors should be aware that:
 including the publication of a physical book.  
 - Before contributing, all contributors must sign a non-disclosure agreement (NDA)
 to ensure proper handling of the content and rights.  
+- Profits will be used by the foundation to cover working expenses and to sponsor
+other to be defined opensource projects.
 
 Your contributions are invaluable and will help make *The Zabbix Book* an even greater
 resource for the community!
