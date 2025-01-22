@@ -18,31 +18,31 @@ nav:
   - "Getting started":
       - getting-started/initial-steps.md
       - getting-started/Requirements.md
-  - "Chapter 1 ":
+  - "Chapter 1 : Zabbix components":
       - zabbix-components/chapter.md
       - zabbix-components/basic-installation.md
-  - "Chapter 2":
+  - "Chapter 2 : Proxies and Webcomponents": 
       - zabbix-proxies/chapter.md
       - zabbix-proxies/passive-proxies.md
       - zabbix-proxies/active-proxies.md
       - zabbix-proxies/web-services.md
-  - "Chapter 3":
+  - "Chapter 3 : Installation":
       - zabbix-installation/chapter.md
-  - "Chapter 4":
+  - "Chapter 4 : Collecting data ":
       - zabbix-collecting-data/chapter.md
-  - "Chapter 5":
+  - "Chapter 5 : Triggers":
       - zabbix-triggers/chapter.md
-  - "Chapter 6":
+  - "Chapter 6 : Templates":
       - zabbix-templates/chapter.md
-  - "Chapter 7": 
+  - "Chapter 7 : Alerting": 
       - zabbix-alerts/chapter.md
-  - "Chapter 8":
+  - "Chapter 8 : LLD":
       - zabbix-lld/chapter.md
-  - "Chapter 9": 
+  - "Chapter 9 : Extending Zabbix": 
       - zabbix-extending/chapter.md
-  - "Chapter 10": 
+  - "Chapter 10 : Discovery": 
       - zabbix-discovery/chapter.md
-  - "Chapter 11":
+  - "Chapter 11 : Visualisation":
       - zabbix-visualisation/chapter.md
 
 theme:
@@ -55,11 +55,11 @@ theme:
   icon:
     logo: material/library
   features:
-#    - navigation.tabs
+#    - navigation.tabs #add navigation to the top
     - navigation.expand
     - navigation.prune
     - navigation.path
-    - navigation.sections
+#    - navigation.sections # removes the collapsable menu
     - navigation.indexes
     - navigation.top
     - search.suggest
