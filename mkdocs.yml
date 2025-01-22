@@ -21,17 +21,27 @@ nav:
   - "Chapter 1 : Zabbix components":
       - zabbix-components/chapter.md
       - zabbix-components/basic-installation.md
-  - "Chapter 2 : Proxies and Webcomponents": 
+      - zabbix-components/ha-setup.md
+  - "Chapter 2 : Installation":
+      - zabbix-installation/chapter.md
+      - zabbix-installation/frontend.md
+      - zabbix-installation/host-groups.md
+      - zabbix-installation/user-groups.md
+      - zabbix-installation/external-authentication.md
+  - "Chapter 3 : Proxies and Webcomponents": 
       - zabbix-proxies/chapter.md
       - zabbix-proxies/passive-proxies.md
       - zabbix-proxies/active-proxies.md
       - zabbix-proxies/web-services.md
-  - "Chapter 3 : Installation":
-      - zabbix-installation/chapter.md
   - "Chapter 4 : Collecting data ":
       - zabbix-collecting-data/chapter.md
+      - zabbix-collecting-data/dataflow.md
+      - zabbix-collecting-data/protocols.md
+      - zabbix-collecting-data/hosts.md
   - "Chapter 5 : Triggers":
       - zabbix-triggers/chapter.md
+      - zabbix-triggers/triggers.md
+      - zabbix-triggers/advanced-triggers.md
   - "Chapter 6 : Templates":
       - zabbix-templates/chapter.md
   - "Chapter 7 : Alerting": 

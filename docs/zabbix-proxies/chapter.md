@@ -2,7 +2,7 @@
 
 Proxies are often regarded as an advanced topic in Zabbix, but in reality,
 they are a fundamental part of many installations and one of the first components
-we set up for numerous customers. In this chapter, we'll make proxies the second
+we set up for numerous customers. In this chapter, we'll make proxies the third
 subject we cover, encouraging you to consider them from the very beginning of your
 Zabbix journey.
 
@@ -19,5 +19,3 @@ into why proxies should be an integral part of your monitoring strategy from the
 By the end, you'll not only know how to set up a basic proxy but also have a clear
 understanding of their underlying workings and strategic advantages,
 ensuring you make informed decisions as you scale your Zabbix installation.
-
-
