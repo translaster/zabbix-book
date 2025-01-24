@@ -8,17 +8,22 @@ license, meaning it is free for non-commercial use only.
 
 Contributors should be aware that:  
 
-- By contributing, you agree to transfer the rights of your contributions to the
-**Penmasters Foundation**.  
-- The foundation reserves the right to use the material for commercial purposes,
-including the publication of a physical book.  
-- Before contributing, all contributors must sign a agreement
-to ensure proper handling of the content and rights.  
-- Profits will be used by the foundation to cover working expenses and to sponsor
-other to be defined opensource projects.
+- By contributing to this work, you irrevocably assign and transfer all rights, title,
+and interest in your contributions to **The Monitoring Penmasters Foundation**,
+including any associated intellectual property rights, to the fullest extent permitted by law.
+- **The Monitoring Penmasters Foundation** reserves the right to use, reproduce, 
+modify, distribute, and commercially exploit any contributed material in any form,
+including but not limited to the publication of physical and digital books.
+- All contributors must sign a **Deed of Transfer of Intellectual Property Rights** before making 
+any contributions, ensuring the proper transfer of rights and handling of the content
+by **The Monitoring Penmasters Foundation**. Any contributions without a signed 
+**Deed of Transfer of Intellectual Property Rights** cannot be accepted.
+- All profits generated will be used by The Monitoring Penmasters Foundation to cover 
+operational expenses and to sponsor other open-source projects, as determined by the foundation.
+
 
 Your contributions are invaluable and will help make *The Zabbix Book* an even greater
-resource for the community!
+resource for the entire community!
 
 Shield: [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
