@@ -16,44 +16,48 @@ nav:
   - "Welcome": "index.md"
   - "Guidlines": "Guidelines.md"
   - "Getting started":
-      - getting-started/initial-steps.md
-      - getting-started/Requirements.md
+      - ch0-getting-started/initial-steps.md
+      - ch0-getting-started/Requirements.md
   - "Chapter 1 : Zabbix components":
-      - zabbix-components/chapter.md
-      - zabbix-components/basic-installation.md
-      - zabbix-components/ha-setup.md
+      - ch1-zabbix-components/chapter.md
+      - ch1-zabbix-components/basic-installation.md
+      - ch1-zabbix-components/ha-setup.md
   - "Chapter 2 : Installation":
-      - zabbix-installation/chapter.md
-      - zabbix-installation/frontend.md
-      - zabbix-installation/host-groups.md
-      - zabbix-installation/user-groups.md
-      - zabbix-installation/external-authentication.md
+      - ch2-zabbix-installation/chapter.md
+      - ch2-zabbix-installation/frontend.md
+      - ch2-zabbix-installation/host-groups.md
+      - ch2-zabbix-installation/user-groups.md
+      - ch2-zabbix-installation/external-authentication.md
   - "Chapter 3 : Proxies and Webcomponents": 
-      - zabbix-proxies/chapter.md
-      - zabbix-proxies/passive-proxies.md
-      - zabbix-proxies/active-proxies.md
-      - zabbix-proxies/web-services.md
+      - ch3-zabbix-proxies/chapter.md
+      - ch3-zabbix-proxies/passive-proxies.md
+      - ch3-zabbix-proxies/active-proxies.md
+      - ch3-zabbix-proxies/web-services.md
   - "Chapter 4 : Collecting data ":
-      - zabbix-collecting-data/chapter.md
-      - zabbix-collecting-data/dataflow.md
-      - zabbix-collecting-data/protocols.md
-      - zabbix-collecting-data/hosts.md
+      - ch4-zabbix-collecting-data/chapter.md
+      - ch4-zabbix-collecting-data/dataflow.md
+      - ch4-zabbix-collecting-data/protocols.md
+      - ch4-zabbix-collecting-data/hosts.md
   - "Chapter 5 : Triggers":
-      - zabbix-triggers/chapter.md
-      - zabbix-triggers/triggers.md
-      - zabbix-triggers/advanced-triggers.md
+      - ch5-zabbix-triggers/chapter.md
+      - ch5-zabbix-triggers/triggers.md
+      - ch5-zabbix-triggers/advanced-triggers.md
   - "Chapter 6 : Templates":
-      - zabbix-templates/chapter.md
+      - ch6-zabbix-templates/chapter.md
   - "Chapter 7 : Alerting": 
-      - zabbix-alerts/chapter.md
+      - ch7-zabbix-alerts/chapter.md
   - "Chapter 8 : LLD":
-      - zabbix-lld/chapter.md
+      - ch8-zabbix-lld/chapter.md
   - "Chapter 9 : Extending Zabbix": 
-      - zabbix-extending/chapter.md
+      - ch9-zabbix-extending/chapter.md
   - "Chapter 10 : Discovery": 
-      - zabbix-discovery/chapter.md
+      - ch10-zabbix-discovery/chapter.md
   - "Chapter 11 : Visualisation":
-      - zabbix-visualisation/chapter.md
+      - ch11-zabbix-visualisation/chapter.md
+  - "Chapter 12 : Zabbix API":
+      - ch12-zabbix-api/chapter.md
+  - "Chapter 13 : Real world examples":
+      - ch13-zabbix-real-world-examples/chapter.md
 
 theme:
   language: en
