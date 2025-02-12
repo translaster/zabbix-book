@@ -7,3 +7,12 @@ frontend
 onboarding
 okta
 dataflow
+chrony
+dnf
+iptables
+virtualised
+penmasters
+firewalld
+https
+www
+en

@@ -9,6 +9,7 @@
   how-to-install-mkdocs.md
 - Create a new branch to make your changes
     - git branch "<your branch name\>"
+    - git checkout "<your branch name\>"
 - Make the changes you want and commit them
     - git add "files you changed"
     - git commit -m "add useful commit info"
