@@ -3,7 +3,7 @@
 ## License
 
 Please before you start take a look at our most updated license : [License](https://github.com/penmasters/zabbix-book/blob/main/readme.md)
-on github.
+on Github.
 
 *The Zabbix Book* is a freely accessible resource designed to help users understand
 and master Zabbix. Contributions are highly encouraged to improve and expand its
@@ -25,7 +25,6 @@ by **The Monitoring Penmasters Foundation**. Any contributions without a signed
 **Deed of Transfer of Intellectual Property Rights** cannot be accepted.
 - All profits generated will be used by The Monitoring Penmasters Foundation to cover
 operational expenses and to sponsor other open-source projects, as determined by the foundation.
-
 
 Your contributions are invaluable and will help make *The Zabbix Book* an even greater
 resource for the entire community!
