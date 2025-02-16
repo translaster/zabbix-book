@@ -6,7 +6,7 @@ Whether you're managing a small network or overseeing a large-scale enterprise
 system, Zabbix provides the tools you need to monitor performance, detect issues,
 and ensure the smooth operation of your services.
 
-In this book, we focus on **Zabbix LTS 7.0**, the long-term support version that
+In this book, we focus on **Zabbix LTS 8.0**, the long-term support version that
 ensures stability and reliability for your monitoring needs. We'll explore its
 extensive feature set, including the newly introduced **reporting functionality**
 and **built-in web monitoring** based on the Selenium driver, which allows for
