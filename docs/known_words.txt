@@ -17,3 +17,12 @@ https
 www
 en
 github
+mariadb
+repo
+repos
+log_bin_trust_function_creators
+emojis
+mysqld
+runtime
+srv
+charset
