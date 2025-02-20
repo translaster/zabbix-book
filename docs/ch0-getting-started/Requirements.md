@@ -63,10 +63,12 @@ To install and enable the firewall, run the following command:
 
 ```bash
 RedHat
-# dnf install firewalld --now
+# dnf install firewalld
+# systemctl enable firewalld --now
 
 Ubuntu
-# sudo ufw enable 
+# sudo apt install ufw -y
+# sudo ufw enable
 ```
 
 Once installed, you can configure the necessary ports.
@@ -76,10 +78,10 @@ this port in the firewall:
 
 ```bash
 RedHat
-# firewall-cmd --add-service=Zabbix-server --permanent
+# firewall-cmd --add-service=zabbix-server --permanent
 
 Ubuntu
-# sudo ufw allow 10051
+# sudo ufw allow 10051/tcp
 ```
 
 If the service is not recognized, you can manually specify the port:
@@ -108,14 +110,15 @@ If one of the hosts has an incorrect time zone, it could lead to confusion, such
 as investigating an issue in Zabbix that appears to have happened hours earlier
 than it actually did.
 
-To install Chrony, an NTP client, use the following command:
+To install and enable chrony, our NTP client, use the following command:
 
 ```bash
 RedHat
-# dnf install chronyd --now
+# dnf install chrony
+# systemctl enable chronyd --now
 
 Ubuntu
-# sudo apt install chrony
+# sudo apt install chrony -y
 ```
 
 Once installed, you can verify that Chrony is enabled and running by checking
@@ -245,7 +248,7 @@ to a dedicated company time server. You can find local NTP servers
 
 ### Updating Time Servers
 
-To update the time servers, modify the `/etc/chrony.conf` file. Replace the existing
+To update the time servers, modify the `/etc/chrony.conf` file under RedHat based systems if you use Ubuntu edit `/etc/chrony/chrony.conf` . Replace the existing
 NTP server with one closer to your location.
 
 Example of the current configuration:
@@ -256,7 +259,7 @@ Example of the current configuration:
 pool 2.centos.pool.ntp.org iburst
 ```
 
-Change it to a local time server:
+Change the pools you want to a local time server:
 
 ```bash
 # Use public servers from the pool.ntp.org project.
