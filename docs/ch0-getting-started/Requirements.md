@@ -40,6 +40,20 @@ For simplicity, take note of the server details:
 
 ## Basic OS Configuration
 
+Operating systems, so many choices, each with its own advantages and loyal user base.
+While Zabbix can be installed on a wide range of platforms, documenting the process
+for every available OS would be impractical. To keep this book focused and efficient,
+we have chosen to cover only the most widely used options: Ubuntu and Red Hat based
+distributions.
+
+Since not everyone has access to a Red Hat Enterprise Linux (RHEL) subscription even
+though a developer account provides limited access we have opted for Rocky Linux
+as a readily available alternative. For this book, we will be using
+Rocky Linux 9.x and Ubuntu LTS 24.04.x.
+
+- <https://rockylinux.org/>
+- <https://ubuntu.com/>
+
 ### Firewall
 
 Before installing Zabbix, it's essential to properly prepare the operating system.

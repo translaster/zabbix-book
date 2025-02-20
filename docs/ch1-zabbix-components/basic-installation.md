@@ -44,10 +44,10 @@ Zabbix database.
 
 We will cover the following topics:
 
-Install our Database based on MariaDB.
-Install our Database based on PostgreSQL.
-Installing the Zabbix.
-Install the frontend.
+* Install our Database based on MariaDB.
+* Install our Database based on PostgreSQL.
+* Installing the Zabbix server.
+* Install the frontend.
 
 ## Installing the MariaDB database
 
