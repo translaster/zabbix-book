@@ -133,7 +133,7 @@ This command will automatically fetch and install the latest updates available f
 your system, applying security patches, performance improvements, and bug fixes.
 Once the update process is complete, you can move forward with the MariaDB installation.
 
-### Install the MariaDB database¶
+### Install the MariaDB database
 
 With the operating system updated and the MariaDB repository configured, you are
 now ready to install the MariaDB server and client packages. This will provide the
