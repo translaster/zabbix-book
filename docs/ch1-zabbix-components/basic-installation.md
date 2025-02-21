@@ -69,20 +69,24 @@ This will open a text editor where you can input the repository configuration de
 Once the repository is configured, you can proceed with the installation of MariaDB
 using your package manager.
 
-Here’s the configuration you need to add into the file:
+???+ tip
+    Always check Zabbix documentation for the latest supported versions.
 
+The latest config can be found here:
+https://mariadb.org/download/?t=repo-config
+
+Here’s the configuration you need to add into the file:
 ```bash
 RedHat
-
-# MariaDB 10.11 RedHatEnterpriseLinux repository list - created 2023-11-01 14:20 UTC
+# MariaDB 11.4 RedHatEnterpriseLinux repository list - created 2025-02-21 10:15 UTC
 # https://mariadb.org/download/
 [mariadb]
 name = MariaDB
 # rpm.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
-# baseurl = https://rpm.mariadb.org/10.11/rhel/$releasever/$basearch
-baseurl = https://mirror.23m.com/mariadb/yum/10.11/rhel/$releasever/$basearch
+# baseurl = https://rpm.mariadb.org/11.4/rhel/$releasever/$basearch
+baseurl = https://mirror.bouwhuis.network/mariadb/yum/11.4/rhel/$releasever/$basearch
 # gpgkey = https://rpm.mariadb.org/RPM-GPG-KEY-MariaDB
-gpgkey = https://mirror.23m.com/mariadb/yum/RPM-GPG-KEY-MariaDB
+gpgkey = https://mirror.bouwhuis.network/mariadb/yum/RPM-GPG-KEY-MariaDB
 gpgcheck = 1
 
 Ubuntu
@@ -101,7 +105,8 @@ To update your OS, run the following command:
 
 ```bash
 RedHat
-# dnf update -yum
+# dnf update -y
+
 
 Ubuntu
 ```
@@ -145,42 +150,56 @@ version of MariaDB using the following command:
 
 ```bash
 RedHat and Ubuntu
-# mysql -V
+# mariadb -V
 ```
 
 The expected output should resemble this:
 
 ```
-mysql  Ver 15.1 Distrib 10.11.6-MariaDB, for Linux (x86_64) using EditLine wrapper
+mariadb from 11.4.5-MariaDB, client 15.2 for Linux (aarch64) using  EditLine wrapper
 ```
 
 To ensure that the MariaDB service is running properly, you can check its status
 with the following command:
 
 ```bash
-# systemctl status MariaDB
+# systemctl status mariadb
 ```
 
 You should see an output similar to this, indicating that the MariaDB service
 is active and running:
 
 ```bash
-mariadb.service - MariaDB 10.11.6 database server
+mariadb.service - MariaDB 11.4.5 database server
      Loaded: loaded (/usr/lib/systemd/system/mariadb.service; enabled; preset: disabled)
     Drop-In: /etc/systemd/system/mariadb.service.d
              └─migrated-from-my.cnf-settings.conf
-     Active: active (running) since Sat 2023-11-18 19:19:36 CET; 2min 13s ago
+     Active: active (running) since Fri 2025-02-21 11:22:59 CET; 2min 8s ago
        Docs: man:mariadbd(8)
              https://mariadb.com/kb/en/library/systemd/
-    Process: 41986 ExecStartPre=/bin/sh -c systemctl unset-environment _WSREP_START_POSITION (code=exited, status=0/SUCCESS)
-    Process: 41987 ExecStartPre=/bin/sh -c [ ! -e /usr/bin/galera_recovery ] && VAR= ||   VAR=`cd /usr/bin/..; /usr/bin/galera_recovery`; [ $? -eq 0 ]   && systemctl set-environment _WSREP_START>
-    Process: 42006 ExecStartPost=/bin/sh -c systemctl unset-environment _WSREP_START_POSITION (code=exited, status=0/SUCCESS)
-   Main PID: 41995 (mariadbd)
+    Process: 23147 ExecStartPre=/bin/sh -c systemctl unset-environment _WSREP_START_POSITION (code=exited, status=0/SUCCESS)
+    Process: 23148 ExecStartPre=/bin/sh -c [ ! -e /usr/bin/galera_recovery ] && VAR= ||   VAR=`/usr/bin/galera_recovery`; [ $? -eq 0 ]   && systemctl set-enviro>
+    Process: 23168 ExecStartPost=/bin/sh -c systemctl unset-environment _WSREP_START_POSITION (code=exited, status=0/SUCCESS)
+   Main PID: 23156 (mariadbd)
      Status: "Taking your SQL requests now..."
-      Tasks: 9 (limit: 12344)
-     Memory: 206.8M
-        CPU: 187ms
+      Tasks: 7 (limit: 30620)
+     Memory: 281.7M
+        CPU: 319ms
+     CGroup: /system.slice/mariadb.service
+             └─23156 /usr/sbin/mariadbd
+
+Feb 21 11:22:58 localhost.localdomain mariadbd[23156]: 2025-02-21 11:22:58 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+Feb 21 11:22:58 localhost.localdomain mariadbd[23156]: 2025-02-21 11:22:58 0 [Note] Plugin 'FEEDBACK' is disabled.
+Feb 21 11:22:58 localhost.localdomain mariadbd[23156]: 2025-02-21 11:22:58 0 [Note] Plugin 'wsrep-provider' is disabled.
+Feb 21 11:22:58 localhost.localdomain mariadbd[23156]: 2025-02-21 11:22:58 0 [Note] InnoDB: Buffer pool(s) load completed at 250221 11:22:58
+Feb 21 11:22:58 localhost.localdomain mariadbd[23156]: 2025-02-21 11:22:58 0 [Note] Server socket created on IP: '0.0.0.0'.
+Feb 21 11:22:58 localhost.localdomain mariadbd[23156]: 2025-02-21 11:22:58 0 [Note] Server socket created on IP: '::'.
+Feb 21 11:22:58 localhost.localdomain mariadbd[23156]: 2025-02-21 11:22:58 0 [Note] mariadbd: Event Scheduler: Loaded 0 events
+Feb 21 11:22:58 localhost.localdomain mariadbd[23156]: 2025-02-21 11:22:58 0 [Note] /usr/sbin/mariadbd: ready for connections.
+Feb 21 11:22:58 localhost.localdomain mariadbd[23156]: Version: '11.4.5-MariaDB'  socket: '/var/lib/mysql/mysql.sock'  port: 3306  MariaDB Server
+Feb 21 11:22:59 localhost.localdomain systemd[1]: Started MariaDB 11.4.5 database server.
 ```
+
 
 This confirms that your MariaDB server is up and running, ready for further configuration.
 
@@ -290,7 +309,7 @@ You'll be prompted to enter the root password that you set during the mariadb-se
 process.
 
 ```bash
-# mysql -uroot -p
+# mariadb -uroot -p
 ```
 
 Once you're logged into the MariaDB shell, run the following command to create a
