@@ -55,6 +55,8 @@ To begin the installation process for the MariaDB server, the first step involve
 manually creating a repository configuration file. This file, mariadb.repo on Rocky,
 must be placed in the /etc/yum.repos.d/ directory. The repository file will allow
 your package manager to locate and install the necessary MariaDB components.
+For Ubuntu we need to import the repository keys and create a file for example
+'/etc/apt/sources.list.d/mariadb.sources'.
 
 To create the MariaDB repository file, execute the following command in your terminal:
 
@@ -63,6 +65,11 @@ RedHat
 # vi /etc/yum.repos.d/mariadb.repo
 
 Ubuntu
+# sudo apt-get install apt-transport-https curl
+# sudo mkdir -p /etc/apt/keyrings
+#sudo curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp'
+
+# sudo vi /etc/apt/sources.list.d/mariadb.sources
 ```
 
 This will open a text editor where you can input the repository configuration details.
@@ -90,6 +97,16 @@ gpgkey = https://mirror.bouwhuis.network/mariadb/yum/RPM-GPG-KEY-MariaDB
 gpgcheck = 1
 
 Ubuntu
+# MariaDB 11.4 repository list - created 2025-02-21 11:42 UTC
+# https://mariadb.org/download/
+X-Repolib-Name: MariaDB
+Types: deb
+# deb.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
+# URIs: https://deb.mariadb.org/11.4/ubuntu
+URIs: https://mirror.bouwhuis.network/mariadb/repo/11.4/ubuntu
+Suites: noble
+Components: main main/debug
+Signed-By: /etc/apt/keyrings/mariadb-keyring.pgp
 ```
 
 After saving the file, ensure that everything is properly set up and that your
@@ -109,6 +126,7 @@ RedHat
 
 
 Ubuntu
+sudo apt-get update
 ```
 
 This command will automatically fetch and install the latest updates available for
@@ -128,6 +146,7 @@ RedHat
 # dnf install MariaDB-server MariaDB-client
 
 Ubuntu
+sudo apt-get install mariadb-server
 ```
 
 This command will download and install both the server and client packages, enabling
@@ -140,8 +159,6 @@ upon boot and start it immediately. Use the following command to accomplish this
 ```bash
 RedHat
 # systemctl enable mariadb --now
-
-Ubuntu
 ```
 
 This command will both enable and start the MariaDB service. Once the service is
@@ -163,6 +180,7 @@ To ensure that the MariaDB service is running properly, you can check its status
 with the following command:
 
 ```bash
+RedHat and Ubuntu
 # systemctl status mariadb
 ```
 
@@ -213,8 +231,8 @@ your database.
 Run the following command:
 
 ```bash
-RedHat
-# mariadb-secure-installation
+RedHat and Ubuntu
+# sudo mariadb-secure-installation
 ```
 
 ```
@@ -309,6 +327,7 @@ You'll be prompted to enter the root password that you set during the mariadb-se
 process.
 
 ```bash
+RedHat and Ubuntu
 # mariadb -uroot -p
 ```
 
