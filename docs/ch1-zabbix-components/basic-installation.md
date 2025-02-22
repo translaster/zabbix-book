@@ -14,6 +14,7 @@ which we will discuss in detail.
 * The Zabbix database
 
 ![overview](./basic-installation/zabbix-server.png){ align=left }
+*1.1 Zabbix basic split installation*
 
 All of these components can either be installed on a single server or distributed
 across three separate servers. The core of the system is the Zabbix server, often
