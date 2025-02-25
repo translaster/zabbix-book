@@ -43,3 +43,9 @@ zabbix_server
 enablerepo
 epel
 sestatus
+impactful
+patrik
+db
+redhat
+localhost
+ansible

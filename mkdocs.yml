@@ -111,7 +111,8 @@ plugins:
         - pt  
         - es
         - th
-        - zh 
+        - zh
+        - ru
         - en
 
   - privacy #GDPR compliance
@@ -146,6 +147,7 @@ plugins:
       - es/*
       - th/*
       - zh/*
+      - ru/*
     # - credits.md
     #- coverage.md
     #- reference/* 
@@ -181,6 +183,9 @@ plugins:
           build: true
         - locale: zh
           name: 中国人
+          build: true
+        - locale: ru
+          name: Russian
           build: true
         - locale: en
           default: true

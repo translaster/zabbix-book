@@ -59,6 +59,8 @@ your package manager to locate and install the necessary MariaDB components.
 For Ubuntu we need to import the repository keys and create a file for example
 '/etc/apt/sources.list.d/mariadb.sources'.
 
+### Add the MariaDB repository
+
 To create the MariaDB repository file, execute the following command in your terminal:
 
 ```bash
@@ -84,8 +86,9 @@ The latest config can be found here:
 https://mariadb.org/download/?t=repo-config
 
 Here’s the configuration you need to add into the file:
-```bash
+
 RedHat
+```bash
 # MariaDB 11.4 RedHatEnterpriseLinux repository list - created 2025-02-21 10:15 UTC
 # https://mariadb.org/download/
 [mariadb]
@@ -96,8 +99,9 @@ baseurl = https://mirror.bouwhuis.network/mariadb/yum/11.4/rhel/$releasever/$bas
 # gpgkey = https://rpm.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgkey = https://mirror.bouwhuis.network/mariadb/yum/RPM-GPG-KEY-MariaDB
 gpgcheck = 1
-
+```
 Ubuntu
+```bash
 # MariaDB 11.4 repository list - created 2025-02-21 11:42 UTC
 # https://mariadb.org/download/
 X-Repolib-Name: MariaDB
@@ -121,12 +125,12 @@ about to install.
 
 To update your OS, run the following command:
 
-```bash
 RedHat
+```bash
 # dnf update -y
-
-
+```
 Ubuntu
+```
 sudo apt-get update
 ```
 
@@ -403,6 +407,75 @@ the Zabbix server to connect to the database.
     This ensures that Zabbix can successfully create the required triggers during
     schema import without encountering privilege-related errors.
 
+If we want our Zabbix server to connect to our DB then we also need to open our firewall port.
+
+RedHat
+```
+# firewall-cmd --add-port=3306/tcp --permanent
+# firewall-cmd --reload
+```
+Ubuntu
+```
+# sudo ufw allow 10051/tcp
+```
+
+### Populate the Zabbix DB
+
+With the users and permissions set up correctly, you can now populate the database
+with the Zabbix schema created and other required elements. Follow these steps:
+
+One of the first things we need to do is add the Zabbix repository to our machine.
+This may sound weird but actually makes sense because we need to populate our DB
+with our Zabbix schemas.
+
+RedHat
+```bash
+# rpm -Uvh https://repo.zabbix.com/zabbix/7.2/release/rocky/9/noarch/zabbix-release-latest-7.2.el9.noarch.rpm
+# dnf clean all
+# dnf install zabbix-sql-scripts -y
+```
+
+Ubuntu
+```bash
+# wget https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.2+ubuntu24.04_all.deb
+# dpkg -i zabbix-release_latest_7.2+ubuntu24.04_all.deb
+# apt update
+# apt install zabbix-sql-scripts
+```
+Now lets upload the data from zabbix (db structure, images, user, ... )
+for this we make use of the user `zabbix-srv` and we upload it all in our DB `zabbix`.
+
+RedHat and Ubuntu
+```bash
+# sudo zcat /usr/share/zabbix/sql-scripts/mysql/server.sql.gz | mariadb --default-character-set=utf8mb4 -uzabbix-srv -p zabbix
+```
+???+ note
+    Depending on the speed of your hardware or virtual machine, the process may
+    take anywhere from a few seconds to several minutes. Please be patient and
+    avoid cancelling the operation; just wait for the prompt to appear.
+
+Log back into your MySQL Database as root
+
+```bash
+# mariadb -uroot -p
+```
+Once the import of the Zabbix schema is complete and you no longer need the
+log_bin_trust_function_creators global parameter, it is a good practice to remove
+it for security reasons.
+
+To revert the change and set the global parameter back to 0, use the following
+command in the MariaDB shell:
+
+```sql
+mysql> SET GLOBAL log_bin_trust_function_creators = 0;
+Query OK, 0 rows affected (0.001 sec)
+```
+This command will disable the setting, ensuring that the servers security
+posture remains robust.
+
+This concludes our installation of the MariaDB
+
+
 ## Installing the PostgreSQL database
 
 For our DB setup with PostgreSQL we need to add our PostgreSQL repository first
@@ -421,26 +494,33 @@ The table of compatibility can be found [https://docs.timescale.com/self-hosted/
 
 So let us start first setting up our PostgreSQL repository with the following commands.
 
+RedHat
 ```bash
+Install the repository RPM:
+# sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+Disable the built-in PostgreSQL module:
+# sudo dnf -qy module disable postgresql
+```
+
+### Install the PostgreSQL databases
+
 RedHat
 
-# Install the repository RPM:
-sudo dnf install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-9-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-
-# Disable the built-in PostgreSQL module:
-sudo dnf -qy module disable postgresql
-
+```bash
 # Install PostgreSQL:
 sudo dnf install -y postgresql17-server
 
-# Initialize the database and enable automatic start:
-sudo /usr/pgsql-17/bin/postgresql-17-setup initdb
-sudo systemctl enable postgresql-17 --now
-
+Initialize the database and enable automatic start:
+# sudo /usr/pgsql-17/bin/postgresql-17-setup initdb
+# sudo systemctl enable postgresql-17 --now
+```
 Ubuntu
+```
 
 todo
 ```
+
 ### Securing the PostgreSQL database
 
 PostgreSQL handles access permissions differently from MySQL and MariaDB.
@@ -483,11 +563,12 @@ will not be applied. But before we restart let us also edit the file postgresql.
 and allow our database to listen on our network interface for incoming connections
 from the zabbix server. Postgresql will standard only allow connections from the socket.
 
-```bash
 RedHat
+```bash
 # vi /var/lib/pgsql/17/data/postgresql.conf
-
+```
 Ubuntu
+```bash
 
 todo
 ```
@@ -524,7 +605,7 @@ for the Zabbix server. Then, install the appropriate Zabbix package that contain
 the predefined tables, images, icons, and other database elements needed for the
 Zabbix application.
 
-### Add the Zabbix repository and populate the PgSQL DB
+### Create the Zabbix database
 
 To begin, add the Zabbix repository to your system by running the following commands:
 
@@ -681,6 +762,7 @@ grant
 zabbix=# GRANT SELECT, UPDATE ON ALL SEQUENCES IN SCHEMA zabbix_server TO "zabbix-web";
 GRANT
 ```
+### Populate the Zabbix DB
 
 Now, the `zabbix-web` user has appropriate access to interact with the schema
 while maintaining security by limiting permissions to essential operations.
@@ -797,6 +879,7 @@ zabbix=> \q
 
 
 ## Installing the Zabbix server
+
 
 Before proceeding with the installation of your Zabbix server, ensure that the server
 is properly configured, as outlined in the previous section [System Requirements](../../ch0-getting-started/Requirements/)
@@ -917,6 +1000,215 @@ Ubuntu
 # wget https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.2+ubuntu24.04_all.deb
 # dpkg -i zabbix-release_latest_7.2+ubuntu24.04_all.deb
 # apt update
+```
+This will refresh the repository metadata and prepare the system for Zabbix installation.
+
+???+ note
+    A repository in Linux is a configuration that allows you to access and install
+    software packages. You can think of it like an "app store" where you find and
+    download software from a trusted source, in this case, the Zabbix repository.
+    Many repositories are available, but it's important to only add those you trust.
+    The safest practice is to stick to the repositories provided by your operating 
+    system and only add additional ones when you're sure they are both trusted and necessary.
+
+    For our installation, the Zabbix repository is provided by the vendor itself,
+    making it a trusted source. Another popular and safe repository for
+    RedHat-based systems is EPEL (Extra Packages for Enterprise Linux), which is
+    commonly used in enterprise environments.
+    However, always exercise caution when adding new repositories to ensure
+    system security and stability.
+
+### Installing the Zabbix server for MySQL/MariaDB
+
+Now that we’ve added the Zabbix repository with the necessary software, we are
+ready to install both the Zabbix server and the web server. Keep in mind that the
+web server doesn't need to be installed on the same machine as the Zabbix server;
+they can be hosted on separate systems if desired.
+
+To install the Zabbix server and the web server components for MySQL/MariaDB,
+run the following command:
+
+RedHat
+```
+# dnf install zabbix-server-mysql zabbix-web-mysql -y
+```
+Ubuntu
+```
+# apt install zabbix-server-mysql zabbix-frontend-php
+```
+After successfully installing the Zabbix server and frontend packages, we need to
+configure the Zabbix server to connect to the database. This requires modifying the
+Zabbix server configuration file. Open the `/etc/zabbix/zabbix_server.conf` file and
+update the following lines to match your database configuration:
+
+RedHat and Ubuntu
 
 ```
+vi /etc/zabbix/zabbix_server.conf
+```
+```
+DBHost=<database-host>
+DBName=<database-name>
+DBUser=<database-user>
+DBPassword=<database-password>
+```
+Replace <database-host>, <database-name>, <database-user>, and <database-password> with
+the appropriate values for your setup. This ensures that the Zabbix server can communicate
+with your database.
+
+Ensure that there is no # (comment symbol) in front of the configuration parameters,
+as Zabbix will treat lines beginning with # as comments, ignoring them during execution.
+Additionally, double-check for duplicate configuration lines; if there are multiple
+lines with the same parameter, Zabbix will use the value from the last occurrence.
+
+For our setup, the configuration will look like this:
+
+```
+DBHost=<ip or dns of your MariaDB server>
+DBName=zabbix
+DBUser=zabbix-srv
+DBPassword=<your super secret password>
+DBPort=3306
+```
+In this example:
+
+- DBHost refers to the host where your database is running (use localhost if it's on the same machine).
+- DBName is the name of the Zabbix database.
+- DBUser is the database user.
+- DBPassword is the password for the database user.
+
+Make sure the settings reflect your environment's database configuration.
+
+???+ note
+    The Zabbix server configuration file offers an option to include additional
+    configuration files for custom parameters. For a production environment, it's
+    often best to avoid altering the original configuration file directly. Instead,
+    you can create and include a separate configuration file for any additional or
+    modified parameters. This approach ensures that your original configuration
+    file remains untouched, which is particularly useful when performing upgrades
+    or managing configurations with tools like Ansible, Puppet, or SaltStack. 
+
+To enable this feature, remove the # from the line:
+```bash
+# Include=/usr/local/etc/zabbix_server.conf.d/*.conf
+```
+Ensure the path `/usr/local/etc/zabbix_server.conf.d/` exists and
+create a custom configuration file in this directory.
+This file should be readable by the `zabbix` user. By doing so, you can add
+or modify parameters without modifying the default configuration file,
+making system management and upgrades smoother.
+
+With the Zabbix server configuration updated to connect to your database, you
+can now start and enable the Zabbix server service. Run the following command
+to enable the Zabbix server and ensure it starts automatically on boot:
+
+Redhat and Ubuntu
+```bash
+systemctl enable zabbix-server --now
+```
+This command will start the Zabbix server service immediately and configure it
+to launch on system startup. To verify that the Zabbix server is running correctly,
+check the log file for any messages. You can view the latest entries in the `Zabbix server`
+log file using:
+
+```bash
+tail /var/log/zabbix/zabbix_server.log
+```
+Look for messages indicating that the server has started successfully. If there
+are any issues, the log file will provide details to help with troubleshooting.
+
+```bash
+12074:20250225:145333.529 Starting Zabbix Server. Zabbix 7.2.4 (revision c34078a4563).
+12074:20250225:145333.530 ****** Enabled features ******
+12074:20250225:145333.530 SNMP monitoring:           YES
+12074:20250225:145333.530 IPMI monitoring:           YES
+12074:20250225:145333.530 Web monitoring:            YES
+12074:20250225:145333.530 VMware monitoring:         YES
+12074:20250225:145333.530 SMTP authentication:       YES
+12074:20250225:145333.530 ODBC:                      YES
+12074:20250225:145333.530 SSH support:               YES
+12074:20250225:145333.530 IPv6 support:              YES
+12074:20250225:145333.530 TLS support:               YES
+12074:20250225:145333.530 ******************************
+12074:20250225:145333.530 using configuration file: /etc/zabbix/zabbix_server.conf
+12074:20250225:145333.545 current database version (mandatory/optional): 07020000/07020000
+12074:20250225:145333.545 required mandatory version: 07020000
+12075:20250225:145333.557 starting HA manager
+12075:20250225:145333.566 HA manager started in active mode
+12074:20250225:145333.567 server #0 started [main process]
+12076:20250225:145333.567 server #1 started [service manager #1]
+12077:20250225:145333.567 server #2 started [configuration syncer #1]
+12078:20250225:145333.718 server #3 started [alert manager #1]
+12079:20250225:145333.719 server #4 started [alerter #1]
+12080:20250225:145333.719 server #5 started [alerter #2]
+12081:20250225:145333.719 server #6 started [alerter #3]
+12082:20250225:145333.719 server #7 started [preprocessing manager #1]
+12083:20250225:145333.719 server #8 started [lld manager #1]
+```
+If there was an error and the server was not able to connect to the database you
+would see something like this in the server log file :
+
+```bash
+12068:20250225:145309.018 Starting Zabbix Server. Zabbix 7.2.4 (revision c34078a4563).
+12068:20250225:145309.018 ****** Enabled features ******
+12068:20250225:145309.018 SNMP monitoring:           YES
+12068:20250225:145309.018 IPMI monitoring:           YES
+12068:20250225:145309.018 Web monitoring:            YES
+12068:20250225:145309.018 VMware monitoring:         YES
+12068:20250225:145309.018 SMTP authentication:       YES
+12068:20250225:145309.018 ODBC:                      YES
+12068:20250225:145309.018 SSH support:               YES
+12068:20250225:145309.018 IPv6 support:              YES
+12068:20250225:145309.018 TLS support:               YES
+12068:20250225:145309.018 ******************************
+12068:20250225:145309.018 using configuration file: /etc/zabbix/zabbix_server.conf
+12068:20250225:145309.027 [Z3005] query failed: [1146] Table 'zabbix.users' doesn't exist [select userid from users limit 1]
+12068:20250225:145309.027 cannot use database "zabbix": database is not a Zabbix database
+```
+
+Let's check the Zabbix server service to see if it's enabled so that it survives a reboot
+
+```bash
+# systemctl status zabbix-server
+● zabbix-server.service - Zabbix Server
+     Loaded: loaded (/usr/lib/systemd/system/zabbix-server.service; enabled; preset: disabled)
+     Active: active (running) since Tue 2025-02-25 14:53:33 CET; 26min ago
+   Main PID: 12074 (zabbix_server)
+      Tasks: 77 (limit: 24744)
+     Memory: 71.5M
+        CPU: 18.535s
+     CGroup: /system.slice/zabbix-server.service
+             ├─12074 /usr/sbin/zabbix_server -c /etc/zabbix/zabbix_server.conf
+             ├─12075 "/usr/sbin/zabbix_server: ha manager"
+             ├─12076 "/usr/sbin/zabbix_server: service manager #1 [processed 0 events, updated 0 event tags, deleted 0 problems, synced 0 service updates, idle 5.027667 sec during 5.042628 sec]"
+             ├─12077 "/usr/sbin/zabbix_server: configuration syncer [synced configuration in 0.051345 sec, idle 10 sec]"
+             ├─12078 "/usr/sbin/zabbix_server: alert manager #1 [sent 0, failed 0 alerts, idle 5.030391 sec during 5.031944 sec]"
+             ├─12079 "/usr/sbin/zabbix_server: alerter #1 started"
+             ├─12080 "/usr/sbin/zabbix_server: alerter #2 started"
+             ├─12081 "/usr/sbin/zabbix_server: alerter #3 started"
+             ├─12082 "/usr/sbin/zabbix_server: preprocessing manager #1 [queued 0, processed 0 values, idle 5.023818 sec during 5.024830 sec]"
+             ├─12083 "/usr/sbin/zabbix_server: lld manager #1 [processed 0 LLD rules, idle 5.017278sec during 5.017574 sec]"
+             ├─12084 "/usr/sbin/zabbix_server: lld worker #1 [processed 1 LLD rules, idle 21.031209 sec during 21.063879 sec]"
+             ├─12085 "/usr/sbin/zabbix_server: lld worker #2 [processed 1 LLD rules, idle 43.195541 sec during 43.227934 sec]"
+             ├─12086 "/usr/sbin/zabbix_server: housekeeper [startup idle for 30 minutes]"
+             ├─12087 "/usr/sbin/zabbix_server: timer #1 [updated 0 hosts, suppressed 0 events in 0.017595 sec, idle 59 sec]"
+             ├─12088 "/usr/sbin/zabbix_server: http poller #1 [got 0 values in 0.000071 sec, idle 5 sec]"
+             ├─12089 "/usr/sbin/zabbix_server: browser poller #1 [got 0 values in 0.000066 sec, idle 5 sec]"
+             ├─12090 "/usr/sbin/zabbix_server: discovery manager #1 [processing 0 rules, 0 unsaved checks]"
+             ├─12091 "/usr/sbin/zabbix_server: history syncer #1 [processed 4 values, 3 triggers in 0.027382 sec, idle 1 sec]"
+             ├─12092 "/usr/sbin/zabbix_server: history syncer #2 [processed 0 values, 0 triggers in 0.000077 sec, idle 1 sec]"
+             ├─12093 "/usr/sbin/zabbix_server: history syncer #3 [processed 0 values, 0 triggers in 0.000076 sec, idle 1 sec]"
+             ├─12094 "/usr/sbin/zabbix_server: history syncer #4 [processed 0 values, 0 triggers in 0.000020 sec, idle 1 sec]"
+             ├─12095 "/usr/sbin/zabbix_server: escalator #1 [processed 0 escalations in 0.011627 sec, idle 3 sec]"
+             ├─12096 "/usr/sbin/zabbix_server: proxy poller #1 [exchanged data with 0 proxies in 0.000081 sec, idle 5 sec]"
+             ├─12097 "/usr/sbin/zabbix_server: self-monitoring [processed data in 0.000068 sec, idle 1 sec]"
+```
+
+This concludes our chapter on installing and configuring the Zabbix server with Mariadb. 
+
+
+
+
+
+
 ## Installing the frontend

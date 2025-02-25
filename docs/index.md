@@ -1,7 +1,7 @@
 # Welcome
 
 This book is born from a simple desire: **to give back**. After years of
-working with Zabbix, and authoring previous many other publications abou the platform,
+working with Zabbix, and authoring previous many other publications about the platform,
 Patrik and Nathan felt a strong pull to share their knowledge in a way that was accessible
 to everyone. That's how the initial idea of a free, online Zabbix resource was
 conceived – **a community-driven project dedicated to empowering users**.
