@@ -1,4 +1,21 @@
-# About page
+# Welcome
+
+This book is born from a simple desire: **to give back**. After years of
+working with Zabbix, and authoring previous many other publications abou the platform,
+Patrik and Nathan felt a strong pull to share their knowledge in a way that was accessible
+to everyone. That's how the initial idea of a free, online Zabbix resource was
+conceived – **a community-driven project dedicated to empowering users**.
+
+As the online resource grew, so did the vision. We recognized the potential to create
+something even more impactful. This led to the formation of a foundation, dedicated
+to ensuring the long-term sustainability and growth of this community effort.
+This book, a tangible culmination of that vision, represents the next step. All
+profits generated from its sales will be reinvested back into the community, enabling
+us to further expand and enhance the resources and support we offer. This is more
+than just a book; it's a testament to the power of shared knowledge and a commitment
+to fostering a thriving Zabbix community."
+
+---
 
 ## License
 

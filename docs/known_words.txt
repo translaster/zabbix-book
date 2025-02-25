@@ -40,3 +40,6 @@ search_path
 rockylinux
 sql
 zabbix_server
+enablerepo
+epel
+sestatus
