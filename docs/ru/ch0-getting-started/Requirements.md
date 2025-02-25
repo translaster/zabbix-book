@@ -54,12 +54,12 @@ Zabbix предъявляет особые требования к аппара�
 - <https://rockylinux.org/>
 - <https://ubuntu.com/>
 
-### Firewall
+### Брандмауэр
 
-Before installing Zabbix, it's essential to properly prepare the operating system.
-The first step is to ensure that the firewall is installed and configured.
+Перед установкой Zabbix необходимо правильно подготовить операционную систему.
+В первую очередь необходимо убедиться, что брандмауэр установлен и настроен.
 
-To install and enable the firewall, run the following command:
+Чтобы установить и включить брандмауэр, выполните следующую команду:
 
 ```bash
 RedHat
@@ -71,10 +71,10 @@ Ubuntu
 # sudo ufw enable
 ```
 
-Once installed, you can configure the necessary ports.
-For Zabbix, we need to allow access to port `10051/tcp`, which is where the
-Zabbix trapper listens for incoming data. Use the following command to open
-this port in the firewall:
+После установки вы можете настроить необходимые порты.
+Для Zabbix нам нужно разрешить доступ к порту `10051/tcp`, 
+на котором Zabbix trapper прослушивает входящие данные. 
+Используйте следующую команду, чтобы открыть этот порт в брандмауэре:
 
 ```bash
 RedHat
@@ -84,33 +84,34 @@ Ubuntu
 # sudo ufw allow 10051/tcp
 ```
 
-If the service is not recognized, you can manually specify the port:
+Если служба не распознана, можно вручную указать порт:
 
 ```bash
 # firewall-cmd --add-port=10051/tcp --permanent
 ```
 
 /// note | firewalld
-"Firewalld is the replacement for iptables in RHEL-based systems and allows
-changes to take effect immediately without needing to restart the service.
-If your distribution does not use [Firewalld](https://www.firewalld.org),
-refer to your OS documentation for the appropriate firewall configuration steps."
-Ubuntu makes use of UFW and is merely a frontend for iptables.
+«Firewalld является заменой iptables в системах на базе RHEL и 
+позволяет изменениям вступать в силу немедленно, без необходимости 
+перезапускать службу.
+Если в вашем дистрибутиве не используется [Firewalld](https://www.firewalld.org), 
+обратитесь к документации по вашей ОС, чтобы узнать, как настроить брандмауэр».
+В Ubuntu используется UFW, который является всего лишь фронтендом для iptables.
 ///
 
 ---
 
-### Time Server
+### Сервер времени
 
-Another crucial step is configuring the time server and syncing the Zabbix server
-using an NTP client.
-Accurate time synchronization is vital for Zabbix, both for the server and the
-devices it monitors.
-If one of the hosts has an incorrect time zone, it could lead to confusion, such
-as investigating an issue in Zabbix that appears to have happened hours earlier
-than it actually did.
+Еще один важный шаг - настройка сервера времени и синхронизация сервера 
+Zabbix с помощью NTP-клиента.
+Точная синхронизация времени жизненно важна для Zabbix, как для сервера, 
+так и для устройств, за которыми он следит.
+Если на одном из узлов установлен неправильный часовой пояс, это может 
+привести к путанице, например, при расследовании проблемы в Zabbix, 
+которая, как оказалось, произошла на несколько часов раньше, чем на самом деле.
 
-To install and enable chrony, our NTP client, use the following command:
+Чтобы установить и включить chrony, наш NTP-клиент, выполните следующую команду:
 
 ```bash
 RedHat
@@ -121,8 +122,7 @@ Ubuntu
 # sudo apt install chrony -y
 ```
 
-Once installed, you can verify that Chrony is enabled and running by checking
-its status:
+После установки вы можете убедиться, что Chrony включен и работает, проверив его статус:
 
 ```bash
 RedHat
@@ -130,15 +130,15 @@ RedHat
 ```
 
 /// note | dnf
-"dnf is a package manager used in Red Hat-based systems. If you're using another
-distribution, replace `dnf` with your appropriate package manager, such as `zyper`,
-`apt`, or `yum`. Chrony is a modern replacement for `ntpd`, offering faster and
-more accurate time synchronization.
-If your OS does not support [Chrony](https://chrony-project.org/), consider using
-`ntpd` instead."
+«dnf» - это менеджер пакетов, используемый в системах на базе Red Hat. 
+Если вы используете другой дистрибутив, замените `dnf` на соответствующий менеджер 
+пакетов, например `zyper`, `apt`, или `yum`. Chrony - это современная замена `ntpd`, 
+обеспечивающая более быструю и более точную синхронизацию времени.
+Если ваша ОС не поддерживает [Chrony](https://chrony-project.org/), подумайте об использовании `ntpd` вместо него».
 ///
 
-Once Chrony is installed, the next step is to ensure the correct time zone is set. You can view your current time configuration using the `timedatectl` command:
+После установки Chrony необходимо убедиться, что установлен правильный часовой пояс. 
+Вы можете посмотреть текущую конфигурацию времени с помощью команды `timedatectl`:
 
 ```bash
 # timedatectl
@@ -151,16 +151,15 @@ System clock synchronized: yes
           RTC in local TZ: no
 ```
 
-Ensure that the Chrony service is active (refer to the previous steps if needed).
-To set the correct time zone, first, you can list all available time zones with
-the following command:
+Убедитесь, что служба Chrony активна (при необходимости обратитесь к предыдущим шагам).
+Чтобы установить правильный часовой пояс, сначала можно узнать все доступные часовые пояса 
+с помощью следующей команды:
 
 ```bash
 # timedatectl list-timezones
 ```
 
-This will display a list of time zones, from which you can select the one closest
-to your location, for example:
+Появится список часовых поясов, из которого можно выбрать ближайший к вашему местоположению:
 
 ```bash
 Africa/Abidjan
@@ -172,45 +171,45 @@ Pacific/Wallis
 UTC
 ```
 
-Once you've identified your time zone, configure it using the following command:
+Определив часовой пояс, настройте его с помощью следующей команды:
 
 ```bash
-# timedatectl set-timezone Europe/Brussels
+# timedatectl set-timezone Asia/Yekaterinburg
 ```
 
-To verify that the time zone has been configured correctly, use the `timedatectl`
-command again:
+Чтобы убедиться, что часовой пояс настроен правильно, используйте команду `timedatectl` снова:
 
 ```bash
 # timedatectl
-               Local time: Thu 2023-11-16 16:13:35 CET
-           Universal time: Thu 2023-11-16 15:13:35 UTC
-                 RTC time: Thu 2023-11-16 15:13:36
-                Time zone: Europe/Brussels (CET, +0100)
+               Local time: Вт 2025-02-25 16:55:01 +05
+           Universal time: Вт 2025-02-25 11:55:01 UTC
+                 RTC time: Вт 2025-02-25 11:55:01
+                Time zone: Asia/Yekaterinburg (+05, +0500)
 System clock synchronized: yes
               NTP service: active
           RTC in local TZ: no
 ```
 
 ???+ note
-    Some administrators prefer installing all servers in the UTC time zone to
-    ensure that server logs across global deployments are synchronized.
-    Zabbix supports user-based time zone settings, which allows the server to
-    remain in UTC while individual users can adjust the time zone via the
-    interface if needed.
-
+    Некоторые администраторы предпочитают устанавливать все серверы в часовом 
+    поясе UTC, чтобы обеспечить синхронизацию журналов сервера в глобальных 
+    развертываниях.
+    Zabbix поддерживает пользовательские настройки часового пояса, что 
+    позволяет серверу оставаться в UTC, в то время как отдельные пользователи 
+    могут настроить часовой пояс через интерфейс при необходимости.
+    
 ---
 
-### Verifying Chrony Synchronization
+### Проверка синхронизации Chrony
 
-To ensure that Chrony is synchronizing with the correct time servers, you can
-run the following command:
+Чтобы убедиться, что Chrony синхронизируется с правильными серверами времени, 
+вы можете выполнить следующую команду:
 
 ```bash
 # chronyc
 ```
 
-The output should resemble:
+Вывод должен выглядеть следующим образом:
 
 ```bash
 chrony version 4.2
@@ -222,13 +221,13 @@ GNU General Public License version 2 for details.
 chronyc>
 ```
 
-Once inside the Chrony prompt, type the following to check the sources:
+Войдя в приглашение Chrony, введите следующее, чтобы проверить источники:
 
 ```bash
 chronyc> sources
 ```
 
-Example output:
+Пример вывода:
 
 ```bash
 MS Name/IP address         Stratum Poll Reach LastRx Last sample
@@ -239,57 +238,56 @@ MS Name/IP address         Stratum Poll Reach LastRx Last sample
 ^* leontp1.office.panq.nl        1  10   377   904  +6806ns[ +171us] +/- 2336us
 ```
 
-In this example, the NTP servers in use are located outside your local region.
-It is recommended to switch to time servers in your country or, if available,
-to a dedicated company time server. You can find local NTP servers
-[here](https://www.ntppool.org/).
-
+В этом примере используемые серверы NTP расположены за пределами вашего региона.
+Рекомендуется переключиться на серверы времени в вашей стране или, если это 
+возможно, на выделенный сервер времени компании. Вы можете найти локальные 
+NTP-серверы [здесь](https://www.ntppool.org/).
 ---
 
-### Updating Time Servers
+### Обновление серверов времени
 
-To update the time servers, modify the `/etc/chrony.conf` file under RedHat based systems if you use Ubuntu edit `/etc/chrony/chrony.conf` . Replace the existing
-NTP server with one closer to your location.
+Чтобы обновить серверы времени, измените файл `/etc/chrony.conf` в системах на 
+базе RedHat, если вы используете Ubuntu, отредактируйте `/etc/chrony/chrony.conf`. 
+Замените существующий NTP-сервер на более близкий к вашему местоположению.
 
-Example of the current configuration:
-
+Пример текущей конфигурации:
 ```bash
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
 pool 2.centos.pool.ntp.org iburst
 ```
 
-Change the pools you want to a local time server:
+Измените нужные пулы на локальный сервер времени:
 
 ```bash
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
-pool be.pool.ntp.org iburst
+pool ru.pool.ntp.org iburst
 ```
 
-After making this change, restart the Chrony service to apply the new configuration:
+После внесения этих изменений перезапустите службу Chrony, чтобы применить новую конфигурацию:
 
 ```bash
 # systemctl restart chronyd
 ```
 
-### Verifying Updated Time Servers
+### Проверка обновленных серверов времени
 
-Check the time sources again to ensure that the new local servers are in use:
+Проверьте источники времени еще раз, чтобы убедиться, что используются новые локальные серверы:
 
 ```bash
 chronyc> sources
 ```
 
-Example of expected output with local servers:
+Пример ожидаемого вывода с локальными серверами:
 
 ```bash
-MS Name/IP address         Stratum Poll Reach LastRx Last sample
+MS Name/IP address         Stratum Poll Reach LastRx Last sample               
 ===============================================================================
-^- ntp1.unix-solutions.be        2   6    17    43   -375us[ -676us] +/-   28ms
-^* ntp.devrandom.be              2   6    17    43   -579us[ -880us] +/- 2877us
-^+ time.cloudflare.com           3   6    17    43   +328us[  +27us] +/- 2620us
-^+ time.cloudflare.com           3   6    17    43
+^- ntp1.vniiftri.ru              1   6    17    16   -584us[ -584us] +/-   22ms
+^* vigil.intelfx.name            2   6    17    18   +899us[ +317us] +/-   22ms
+^+ 185.211.244.47                2   6    17    18    -67us[ -649us] +/-   28ms
+^+ 217.170.87.229                2   6    17    19  -2335us[-2917us] +/-   52ms
 ```
 
-This confirms that the system is now using local time servers.
+Это подтверждает, что система теперь использует серверы местного времени.
