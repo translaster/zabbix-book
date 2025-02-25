@@ -796,9 +796,19 @@ zabbix=> \q
 ```
 
 
-
-
-
 ## Installing the Zabbix server
+
+Before proceeding with the installation of your Zabbix server, ensure that the server
+is properly configured, as outlined in the previous section [System Requirements](../../ch0-getting-started/Requirements/)
+
+
+
+
+
+
+
+
+
+
 
 ## Installing the frontend
