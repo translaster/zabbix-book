@@ -137,6 +137,14 @@ plugins:
 
       # skip files entirely (supports Unix shell-style wildcards)
       skip_files:
+      - fr/*
+      - de/*
+      - it/*
+      - nl/*
+      - pt/*
+      - es/*
+      - th/*
+      - zh/*
     # - credits.md
     #- coverage.md
     #- reference/* 
