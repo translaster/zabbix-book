@@ -20,7 +20,7 @@ All of these components can either be installed on a single server or distribute
 across three separate servers. The core of the system is the Zabbix server, often
 referred to as the "brain." This component is responsible for processing trigger
 calculations and sending alerts. The database serves as the storage for the Zabbix
-server’s configuration and all the data it collects. The web server provides the
+server's configuration and all the data it collects. The web server provides the
 user interface (front-end) for interacting with the system. It is important to note
 that the Zabbix API is part of the front-end component, not the Zabbix server itself.
 
@@ -85,7 +85,7 @@ using your package manager.
 The latest config can be found here:
 https://mariadb.org/download/?t=repo-config
 
-Here’s the configuration you need to add into the file:
+Here's the configuration you need to add into the file:
 
 RedHat
 ```bash
@@ -118,7 +118,7 @@ After saving the file, ensure that everything is properly set up and that your
 MariaDB version is compatible with your Zabbix version to avoid potential
 integration issues.
 
-Before proceeding with the MariaDB installation, it’s a best practice to ensure
+Before proceeding with the MariaDB installation, it's a best practice to ensure
 your operating system is up-to-date with the latest patches and security fixes.
 This will help maintain system stability and compatibility with the software you're
 about to install.
@@ -698,7 +698,7 @@ Schemas act as logical containers within a database, enabling multiple users or
 applications to access and manage data independently without conflicts. This feature
 is especially valuable in environments where several users or applications need to
 interact with the same database concurrently. Each user or application can have
-its own schema, preventing accidental interference with each other’s data.
+its own schema, preventing accidental interference with each other's data.
 
 ???+ note
     PostgreSQL comes with a default schema, typically called public, but it's in
@@ -882,7 +882,7 @@ zabbix=> \q
 
 
 Before proceeding with the installation of your Zabbix server, ensure that the server
-is properly configured, as outlined in the previous section [System Requirements](../../ch0-getting-started/Requirements/)
+is properly configured, as outlined in the previous section [System Requirements](../ch00-getting-started/Requirements.md)
 
 Another critical step at this stage if you use RedHat based systems is disabling
 SELinux, which can interfere with the installation and operation of Zabbix.
@@ -1020,7 +1020,7 @@ This will refresh the repository metadata and prepare the system for Zabbix inst
 
 ### Installing the Zabbix server for MySQL/MariaDB
 
-Now that we’ve added the Zabbix repository with the necessary software, we are
+Now that we've added the Zabbix repository with the necessary software, we are
 ready to install both the Zabbix server and the web server. Keep in mind that the
 web server doesn't need to be installed on the same machine as the Zabbix server;
 they can be hosted on separate systems if desired.
