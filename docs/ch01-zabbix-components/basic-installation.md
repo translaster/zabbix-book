@@ -63,14 +63,15 @@ For Ubuntu we need to import the repository keys and create a file for example
 
 To create the MariaDB repository file, execute the following command in your terminal:
 
-```bash
 RedHat
+```bash
 # vi /etc/yum.repos.d/mariadb.repo
-
+```
 Ubuntu
+```
 # sudo apt-get install apt-transport-https curl
 # sudo mkdir -p /etc/apt/keyrings
-#sudo curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp'
+# sudo curl -o /etc/apt/keyrings/mariadb-keyring.pgp 'https://mariadb.org/mariadb_release_signing_key.pgp'
 
 # sudo vi /etc/apt/sources.list.d/mariadb.sources
 ```
@@ -131,7 +132,7 @@ RedHat
 ```
 Ubuntu
 ```
-sudo apt-get update
+# sudo apt-get update
 ```
 
 This command will automatically fetch and install the latest updates available for
@@ -146,12 +147,13 @@ necessary components to run and manage your database.
 
 To install the MariaDB server and client, execute the following command:
 
-```bash
 RedHat
+```bash
 # dnf install MariaDB-server MariaDB-client
-
+```
 Ubuntu
-sudo apt-get install mariadb-server
+```bash
+# sudo apt-get install mariadb-server
 ```
 
 This command will download and install both the server and client packages, enabling
@@ -161,8 +163,8 @@ installation is complete, you can proceed to start and configure the MariaDB ser
 Now that MariaDB is installed, we need to enable the service to start automatically
 upon boot and start it immediately. Use the following command to accomplish this:
 
-```bash
 RedHat
+```bash
 # systemctl enable mariadb --now
 ```
 
@@ -170,9 +172,9 @@ This command will both enable and start the MariaDB service. Once the service is
 running, you can verify that the installation was successful by checking the
 version of MariaDB using the following command:
 
-```bash
 RedHat and Ubuntu
-# mariadb -V
+```bash
+# sudo mariadb -V
 ```
 
 The expected output should resemble this:
@@ -186,7 +188,7 @@ with the following command:
 
 ```bash
 RedHat and Ubuntu
-# systemctl status mariadb
+# sudo systemctl status mariadb
 ```
 
 You should see an output similar to this, indicating that the MariaDB service
@@ -235,8 +237,8 @@ your database.
 
 Run the following command:
 
-```bash
 RedHat and Ubuntu
+```bash
 # sudo mariadb-secure-installation
 ```
 
@@ -331,8 +333,8 @@ Log in to the MariaDB shell as the root user:
 You'll be prompted to enter the root password that you set during the mariadb-secure-installation
 process.
 
-```bash
 RedHat and Ubuntu
+```bash
 # mariadb -uroot -p
 ```
 
@@ -437,10 +439,10 @@ RedHat
 
 Ubuntu
 ```bash
-# wget https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.2+ubuntu24.04_all.deb
-# dpkg -i zabbix-release_latest_7.2+ubuntu24.04_all.deb
-# apt update
-# apt install zabbix-sql-scripts
+# sudo wget https://repo.zabbix.com/zabbix/7.2/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.2+ubuntu24.04_all.deb
+# sudo dpkg -i zabbix-release_latest_7.2+ubuntu24.04_all.deb
+# sudo apt update
+# sudo apt install zabbix-sql-scripts
 ```
 Now lets upload the data from zabbix (db structure, images, user, ... )
 for this we make use of the user `zabbix-srv` and we upload it all in our DB `zabbix`.
@@ -506,7 +508,6 @@ Disable the built-in PostgreSQL module:
 ### Install the PostgreSQL databases
 
 RedHat
-
 ```bash
 # Install PostgreSQL:
 sudo dnf install -y postgresql17-server
