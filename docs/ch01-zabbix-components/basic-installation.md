@@ -43,6 +43,16 @@ Zabbix database.
     needs some extra attention when we split it so for this reason we have chosen
     in this example to split the database from the rest of the setup.
 
+
+???+ note
+    A crucial consideration for those managing Zabbix installations is the database
+    backend. Zabbix 7.0 marks the final release to offer support for Oracle Database.
+    Consequently, systems running Zabbix 7.0 or any prior version must undertake a database
+    migration to either PostgreSQL, MySQL, or a compatible fork such as MariaDB before
+    upgrading to a later Zabbix release. This migration is a mandatory step to
+    ensure continued functionality and compatibility with future Zabbix versions.
+
+
 We will cover the following topics:
 
 * Install our Database based on MariaDB.
